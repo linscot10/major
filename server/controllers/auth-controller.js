@@ -1,6 +1,7 @@
 const express = require("express")
 const User = require('../model/User.model')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 const registerController = async (req, res) => {
     try {
@@ -24,7 +25,7 @@ const registerController = async (req, res) => {
         if (user) {
             res.status(201).json({
                 success: true,
-                message: "User created successfully"
+                message: "User created successfully", user
             })
         }
         else {
@@ -43,6 +44,41 @@ const registerController = async (req, res) => {
     }
 }
 
+const loginController = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email })
+        if (!user) {
+            res.status(404).json({
+                success: false,
+                message: "invalid credentials"
+            })
+        }
+
+        const comparePassword = await bcrypt.compare(req.body.password, user.password)
+        if (!comparePassword) {
+            return res.status(500).json({
+                success: false,
+                message: "invalid credentials"
+            })
+        }
+
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRETE, { expires: 'id' })
+        res.status(200).json({
+            success: true,
+            message: "Logged In successfully",
+            token,
+            data: user
+        })
+    } catch (error) {
+        console.error("Something Happened", error)
+        res.status(500).json({
+            success: false,
+            message: "Something Went Wrong"
+        })
+    }
+}
+
 module.exports = {
-    registerController
+    registerController,
+    loginController
 }
