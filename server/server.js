@@ -6,6 +6,7 @@ const morgan = require("morgan")
 require("dotenv").config()
 const connectDB = require("./database/db")
 const testRouter = require('./routes/test-route')
+const authRoutes=require("./routes/auth-route")
 
 const app = express()
 
@@ -17,6 +18,7 @@ PORT = process.env.PORT || 4000
 connectDB()
 
 app.use("/api/", testRouter)
+app.use("/api/auth", authRoutes)
 
 
 app.listen(PORT, () => {
