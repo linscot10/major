@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 
 
-const authMiddleware = async (req, re, next) => {
+const authMiddleware = async (req, res, next) => {
     const authHeader = req.headers["authorization"]
     console.log(authHeader);
     const token = authHeader && authHeader.split(" ")[1];
@@ -13,7 +13,7 @@ const authMiddleware = async (req, re, next) => {
         })
     }
     try {
-        const decodeTokenInfo = jwt.verify(token, process.env.JWT_SECRET_KEY);
+        const decodeTokenInfo = jwt.verify(token, process.env.JWT_SECRET);
         console.log(decodeTokenInfo);
         req.body.userId = decodeTokenInfo;
         next()

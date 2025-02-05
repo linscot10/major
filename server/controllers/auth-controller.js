@@ -81,10 +81,12 @@ const loginController = async (req, res) => {
 
 const currentUserController = async (req, res) => {
     try {
-        const user = await findOne({ _id: req.body.userId })
+
+        const user = await User.findOne({ userId: req.body._id })
         return res.status(200).json({
             success: true,
-            message: "User Fetched Successfully"
+            message: "User Fetched Successfully",
+            data: user
         })
 
     } catch (error) {
