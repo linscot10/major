@@ -15,7 +15,7 @@ const authMiddleware = async (req, re, next) => {
     try {
         const decodeTokenInfo = jwt.verify(token, process.env.JWT_SECRET_KEY);
         console.log(decodeTokenInfo);
-        req.userInfo = decodeTokenInfo;
+        req.body.userId = decodeTokenInfo;
         next()
     } catch (error) {
         console.error("something Happened ", error)
