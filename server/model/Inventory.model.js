@@ -17,24 +17,24 @@ const inventorySchema = new mongoose.Schema({
     },
     organisation: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
         require: [true, 'organisation is required']
     },
     hospital: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
         require: function () {
             return this.inventoryTpe === "out"
         }
     },
     donor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
         require: function () {
             return this.inventoryTpe === "in"
         }
     }
 
-},{timestamps:true})
+}, { timestamps: true })
 
-model.exports = mongoose.model("Inventory", inventorySchema)
+module.exports = mongoose.model("Inventory", inventorySchema)

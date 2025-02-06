@@ -19,7 +19,14 @@ const createInventoryController = async (req, res) => {
             throw new Error("Not A hospital Account")
         }
 
-        
+        const inventory = new Inventory(req.body)
+        await inventory.save()
+
+        return res.status(201).json({
+            success: true,
+            message: "New Blood Record Added",
+            data: inventory
+        })
     } catch (error) {
         console.error('Something Happened', error)
 
