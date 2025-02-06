@@ -6,8 +6,8 @@ const morgan = require("morgan")
 require("dotenv").config()
 const connectDB = require("./database/db")
 const testRouter = require('./routes/test-route')
-const authRoutes=require("./routes/auth-route")
-
+const authRoutes = require("./routes/auth-route")
+const inventoryRoute = require("./routes/inventory-routes")
 const app = express()
 
 app.use(express.json())
@@ -19,6 +19,7 @@ connectDB()
 
 app.use("/api/", testRouter)
 app.use("/api/auth", authRoutes)
+app.use("/api/inventory", inventoryRoute)
 
 
 app.listen(PORT, () => {
