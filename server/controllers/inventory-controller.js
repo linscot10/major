@@ -38,6 +38,29 @@ const createInventoryController = async (req, res) => {
     }
 }
 
+const getInventoryController = async (req, res) => {
+    try {
+
+        const inventory = await Inventory.find({ organisation: req.body.userId })
+        return res.status(200).json({
+            success: true,
+            message: "get all records successfully",
+            data: inventory
+        })
+
+    } catch (error) {
+        console.error('Error fetching the inventory', error)
+
+        return res.status(500).json({
+            success: false,
+            message: "Error fetching the inventory",
+            error
+        })
+    }
+}
+
+
 module.exports = {
     createInventoryController,
+    getInventoryController
 }
