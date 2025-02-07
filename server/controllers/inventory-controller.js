@@ -49,6 +49,9 @@ const getInventoryController = async (req, res) => {
             });
         }
         const inventory = await Inventory.find({ organisation: req.body.userId })
+            .populate('donor')
+            .populate('hospital')
+            .sort({ createdAt: -1 })
         return res.status(200).json({
             success: true,
             message: "get all records successfully",
