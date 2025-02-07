@@ -1,5 +1,6 @@
 const Inventory = require("../model/Inventory.model")
 const User = require("../model/User.model")
+const mongoose = require('mongoose');
 
 
 const createInventoryController = async (req, res) => {
@@ -39,8 +40,14 @@ const createInventoryController = async (req, res) => {
 }
 
 const getInventoryController = async (req, res) => {
+    console.log("req.body.userId:", req.body.userId);
     try {
-
+        if (!mongoose.Types.ObjectId.isValid(req.body.userId)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid userId format"
+            });
+        }
         const inventory = await Inventory.find({ organisation: req.body.userId })
         return res.status(200).json({
             success: true,
