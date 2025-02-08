@@ -53,7 +53,7 @@ const Form = ({ submitBtn, formTitle }) => {
                     onChange={(e) => setOrganisationName(e.target.value)}
                 />
                 <InputType
-                    labelText={"Hopspital Name"}
+                    labelText={"Hospital Name"}
                     labelFor={'forHospitalName'}
                     inputType={'text'}
                     name={'hospitalName'}
@@ -69,7 +69,7 @@ const Form = ({ submitBtn, formTitle }) => {
                     onChange={(e) => setWebsite(e.target.value)}
                 />
                 <InputType
-                    labelText={"address "}
+                    labelText={"Address "}
                     labelFor={'forAddress'}
                     inputType={'text'}
                     name={'address'}
@@ -77,7 +77,7 @@ const Form = ({ submitBtn, formTitle }) => {
                     onChange={(e) => setAddress(e.target.value)}
                 />
                 <InputType
-                    labelText={"phone "}
+                    labelText={"Phone "}
                     labelFor={'forPhone'}
                     inputType={'number'}
                     name={'phone'}
