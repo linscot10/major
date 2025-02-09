@@ -11,7 +11,9 @@ const Register = () => {
                 <div className="col-md-4 form-container">
                     <Form
                         formTitle={"Register "}
-                        submitBtn={'Register'} />
+                        submitBtn={'Register'}
+                        formType={'register'}
+                    />
                 </div>
             </div>
 
