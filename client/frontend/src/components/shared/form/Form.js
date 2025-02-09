@@ -19,6 +19,56 @@ const Form = ({ formType, submitBtn, formTitle }) => {
             <form >
                 <h1 className='text-center'>{formTitle}</h1>
                 <hr />
+                <div className='d-flex mb-3'>
+                    <div className='form-check'>
+                        <input
+                            type='radio'
+                            className='form-check-input'
+                            name='role'
+                            id='donorRadio'
+                            value={'donor'}
+                            onchange={(e) => setRole(e.target.value)}
+                            defaultChecked
+                        />
+                        <label htmlFor='donorRadio' className='form-check-label'>Donor</label>
+                    </div>
+                    <div className='form-check ms-2'>
+                        <input
+                            type='radio'
+                            className='form-check-input'
+                            name='role'
+                            id='adminRadio'
+                            value={"admin"}
+                            onchange={(e) => setRole(e.target.value)}
+
+                        />
+                        <label htmlFor='adminRadio' className='form-check-label'>Admin</label>
+                    </div>
+                    <div className='form-check ms-2'>
+                        <input
+                            type='radio'
+                            className='form-check-input'
+                            name='role'
+                            id='hospitalRadio'
+                            value={'hospital'}
+                            onchange={(e) => setRole(e.target.value)}
+
+                        />
+                        <label htmlFor='hospitalRadio' className='form-check-label'>Hospital</label>
+                    </div>
+                    <div className='form-check ms-2'>
+                        <input
+                            type='radio'
+                            className='form-check-input'
+                            name='role'
+                            id='organisationRadio'
+                            value={'organisatio'}
+                            onchange={(e) => setRole(e.target.value)}
+
+                        />
+                        <label htmlFor='organisationRadio' className='form-check-label'>Organisation</label>
+                    </div>
+                </div>
 
                 {(() => {
                     switch (true) {
@@ -117,6 +167,13 @@ const Form = ({ formType, submitBtn, formTitle }) => {
                                 </>
                             )
                         }
+
+                        default: {
+                            return (
+                                <h1>null</h1>
+                            )
+                        }
+
                     }
                 })()}
 
