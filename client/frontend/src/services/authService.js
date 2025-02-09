@@ -29,6 +29,6 @@ export const handleRegister = (
             address,
             phone)
     } catch (error) {
-        console.log(error)
+        console.error(error)
     }
 }
