@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import InputType from './InputType'
 import { Link } from 'react-router-dom'
-import { handleLogin } from '../../../services/AuthService'
+import { handleLogin, handleRegister } from '../../../services/AuthService'
 
 
 
@@ -19,8 +19,16 @@ const Form = ({ formType, submitBtn, formTitle }) => {
     return (
         <div>
             <form onSubmit={(e) => {
-                if (formType === 'login') return handleLogin(e, email, password)
-                else if (formType === 'register')
+                if (formType === 'login') return handleLogin(e, email, password, role)
+                else if (formType === 'register') return handleRegister(e,
+                    email,
+                    password,
+                    role,
+                    organisationName,
+                    hospitalName,
+                    website,
+                    address,
+                    phone)
             }}>
                 <h1 className='text-center'>{formTitle}</h1>
                 <hr />
