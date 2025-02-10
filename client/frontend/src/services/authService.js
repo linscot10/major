@@ -1,7 +1,10 @@
 export const handleLogin = (e, email, password, role) => {
     e.preventDefault()
     try {
-        console.log("login", e, email, password, role)
+        if (!role || !email || !password){
+            return alert("Please Provide All Fields")
+        }
+            console.log("login", e, email, password, role)
     } catch (error) {
         console.log(error)
     }
