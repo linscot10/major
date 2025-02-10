@@ -1,6 +1,5 @@
 import React from 'react'
 import Form from '../../components/shared/form/Form'
-import { Link } from 'react-router-dom'
 
 const Register = () => {
     return (
@@ -14,9 +13,8 @@ const Register = () => {
                         formTitle={"Register "}
                         submitBtn={'Register'}
                         formType={'register'}
-                    ggg>
+                    />
                 </div>
-                <Link></Link>
             </div>
 
         </>
