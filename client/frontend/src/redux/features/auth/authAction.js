@@ -46,12 +46,32 @@ export const userRegister = createAsyncThunk(
                 address,
                 phone
             })
-            if (data.success) {
-                toast.success(data.message)
+            if (data?.success) {
+                alert("User Registered successfully!")
+                toast.success("User Registered successfully!")
                 window.location.replace('/login')
             }
             return data;
 
+        } catch (error) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            }
+            else {
+                return rejectWithValue(error.message)
+            }
+        }
+    }
+)
+
+export const getCurrentUser = createAsyncThunk(
+    'auth/getCurrentUser',
+    async ({ rejectWithValue }) => {
+        try {
+            const res = await Api.get('auth/current-user')
+            if (res?.data) {
+                return res && res.data
+            }
         } catch (error) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message)
