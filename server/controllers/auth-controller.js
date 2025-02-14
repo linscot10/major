@@ -75,7 +75,7 @@ const loginController = async (req, res) => {
             success: true,
             message: "Logged In successfully",
             token,
-            data: user
+            user
         })
     } catch (error) {
         console.error("Something Happened", error)
@@ -94,7 +94,7 @@ const currentUserController = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "User Fetched Successfully",
-            data: user
+            user
         })
 
     } catch (error) {

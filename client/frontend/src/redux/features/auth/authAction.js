@@ -23,3 +23,42 @@ export const userLogin = createAsyncThunk(
         }
     }
 )
+export const userRegister = createAsyncThunk(
+    'auth/register',
+    async ({
+        email,
+        password,
+        role,
+        organisationName,
+        hospitalName,
+        website,
+        address,
+        phone
+    }, { rejectWithValue }) => {
+        try {
+            const { data } = await Api.post('auth/register', {
+                email,
+                password,
+                role,
+                organisationName,
+                hospitalName,
+                website,
+                address,
+                phone
+            })
+            if (data.success) {
+                toast.success(data.message)
+                window.location.replace('/login')
+            }
+            return data;
+
+        } catch (error) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message)
+            }
+            else {
+                return rejectWithValue(error.message)
+            }
+        }
+    }
+)
