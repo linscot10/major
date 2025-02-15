@@ -10,6 +10,7 @@ export const userLogin = createAsyncThunk(
             if (data.success) {
                 localStorage.setItem('token', data.token)
                 toast.success(data.message)
+                window.location.replace('/')
             }
             return data;
 
@@ -70,7 +71,7 @@ export const getCurrentUser = createAsyncThunk(
         try {
             const res = await Api.get('auth/current-user')
             if (res?.data) {
-                return res && res.data
+                return res?.data
             }
         } catch (error) {
             if (error.response && error.response.data.message) {

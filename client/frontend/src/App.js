@@ -3,13 +3,18 @@ import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import { ToastContainer } from 'react-toastify';
+import ProtectedRoute from './components/Routes/ProtectedRoute'
 
 function App() {
   return (
     < >
       <ToastContainer />
       <Routes>
-        <Route path='/' element={<Home />}></Route>
+        <Route path='/' element={
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>
+        }></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
       </Routes>
