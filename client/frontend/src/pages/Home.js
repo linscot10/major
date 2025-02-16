@@ -9,7 +9,7 @@ const Home = () => {
             {error && <span>{alert(error)}</span>}
             {loading ? <Spinner /> : (
                 <>
-                    <h1>Home Page</h1>
+                    <h1>Main page</h1>
                 </>
             )}
 
