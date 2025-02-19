@@ -1,30 +1,40 @@
 import React from 'react'
 import { BiDonateBlood, BiUserCircle } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
-
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
-    const { user } = useSelector(state => state.auth)
+
+    const { user } = useSelector((state) => state.auth);
+
+    const navigate = useNavigate()
+    const handleLogout = () => {
+        localStorage.clear()
+        alert("Logout Successfully")
+        navigate('/login')
+    }
     return (
 
         <>
-            <nav class="navbar ">
-                <div class="container-fluid">
-                    <div class="navbar-brand">
-                        <BiDonateBlood color='red' /> Blood Bank App
+            <nav className="navbar ">
+                <div className="container-fluid">
+                    <div className="navbar-brand">
+                        <BiDonateBlood color="red" /> Blood Bank App
                     </div>
-                    <ul class="navbar-nav flex-row">
-                        <li class="nav-item mx-3">
-                            <p class="nav-link">
-                                <BiUserCircle />  Welcome {user.name}!
+                    <ul className="navbar-nav flex-row">
+                        <li className="nav-item mx-3">
+                            <p className="nav-link">
+                                <BiUserCircle />  Welcome {user?.name || user?.hospitalName || user?.organisationName}{" "} &nbsp;
+                                <span className="badge bg-secondary">{user?.role}</span>
                             </p>
                         </li>
-                        <li class="nav-item mx-3">
-                            <button class="btn btn-danger">LogOut</button>
+                        <li className="nav-item mx-3">
+                            <button className="btn btn-danger" onClick={handleLogout}>LogOut</button>
                         </li>
                     </ul>
                 </div>
             </nav>
+
         </>
     )
 }
