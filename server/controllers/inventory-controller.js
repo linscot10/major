@@ -13,9 +13,9 @@ const createInventoryController = async (req, res) => {
 
         }
 
-        if (inventoryType === "in" && user.role !== 'donor') {
-            throw new Error("Not A donor Account")
-        }
+        // if (inventoryType === "in" && user.role !== 'donor') {
+        //     throw new Error("Not A donor Account")
+        // }
         if (inventoryType === "out" && user.role !== 'hospital') {
             throw new Error("Not A hospital Account")
         }

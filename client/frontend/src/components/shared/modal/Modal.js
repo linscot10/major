@@ -1,0 +1,76 @@
+import React, { useState } from 'react'
+
+const Modal = () => {
+    const [inventoryType, setInventoryType] = useState('in')
+    const [bloodGroup, setBloodGroup] = useState("")
+    const [quantity, setQuantity] = useState(0)
+    const [donorEmail, setDonorEmail] = useState("")
+    return (
+        <>
+            {/* <!-- Modal --> */}
+            <div
+                className="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabIndex={-1}
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true">
+
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="staticBackdropLabel">
+                                Manage Blood Records
+                            </h1>
+                            <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+
+                            />
+                        </div>
+                        <div className="modal-body ">
+                            <div className="d-flex mb-3">
+                                Blood Type: &nbsp;
+                                <div className="form-check ms-3">
+                                    <input
+                                        type='radio'
+                                        name='inRadio'
+                                        defaultChecked
+                                        value={'in'}
+                                        onChange={(e) => setInventoryType(e.target.value)}
+                                        className='form-check-input' />
+                                    <label htmlFor='in' className='form-check-label'>
+                                        IN
+                                    </label>
+                                </div>
+                                <div className="form-check ms-3">
+                                    <input
+                                        type='radio'
+                                        name='inRadio'
+                                        defaultChecked
+                                        value={'out'}
+                                        onChange={(e) => setInventoryType(e.target.value)}
+                                        className='form-check-input' />
+                                    <label htmlFor='out' className='form-check-label'>
+                                        OUT
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </>
+    )
+}
+
+export default Modal
