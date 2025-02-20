@@ -1,11 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import Spinner from '../components/shared/Spinner'
 import Layout from '../components/shared/layout/Layout'
 import Modal from '../components/shared/modal/Modal'
+import Api from '../services/Api'
 
 const Home = () => {
     const { loading, error } = useSelector(state => state.auth)
+    const [data, setData] = useState([])
+
+    const getBloodRecords = async () => {
+        try {
+
+            const { data } = await Api.get('/inventory/get-inventory')
+            if (data?.success) {
+                setData(data?.inventory)
+                console.log(data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        getBloodRecords();
+
+    }, [])
     return (
 
         <Layout>
