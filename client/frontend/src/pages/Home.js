@@ -4,6 +4,7 @@ import Spinner from '../components/shared/Spinner'
 import Layout from '../components/shared/layout/Layout'
 import Modal from '../components/shared/modal/Modal'
 import Api from '../services/Api'
+import moment from 'moment'
 
 const Home = () => {
     const { loading, error } = useSelector(state => state.auth)
@@ -32,46 +33,45 @@ const Home = () => {
             {error && <span>{alert(error)}</span>}
             {loading ? <Spinner /> : (
                 <>
-                    <h4
-                        className='ms-4'
-                        data-bs-toggle="modal"
-                        data-bs-target='#staticBackrop'
-                        style={{ cursor: "pointer" }}
-                    >
-                        <i className='fa-solid fa-plus text-success py-4'></i>
-                        Add Inventory
-                    </h4>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colSpan={2}>Larry the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className='container'>
+                        <h4
+                            className='ms-4'
+                            data-bs-toggle="modal"
+                            data-bs-target='#staticBackdrop'
+                            style={{ cursor: "pointer" }}
+                        >
+                            <i className='fa-solid fa-plus text-success py-4'></i>
+                            Add Inventory
+                        </h4>
+                        <table className="table ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Blood Group</th>
+                                    <th scope="col">Inventory Type</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Donor Email</th>
+                                    <th scope="col">Time & Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {data?.map(record => (
+                                    <tr key={record._id}>
 
-                    <Modal />
+                                        <td>{record.bloodGroup}</td>
+                                        <td>{record.inventoryType}</td>
+                                        <td>{record.quantity}</td>
+                                        <td>{record.donorEmail}</td>
+                                        <td>{moment(record.createdAt).format('DD/MM/YYYY hh:mm A')}</td>
+
+                                    </tr>
+                                ))}
+
+
+                            </tbody>
+                        </table>
+
+                        <Modal />
+                    </div>
                 </>
             )}
 
