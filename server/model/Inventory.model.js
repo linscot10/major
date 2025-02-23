@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const inventorySchema = new mongoose.Schema({
-    inventoryTpe: {
+    inventoryType: {
         type: String,
         required: [true, "inventory type required"],
         enum: ["in", "out"]
