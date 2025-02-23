@@ -15,7 +15,7 @@ const Modal = () => {
             if (!bloodGroup || !quantity) {
                 return alert("Please Provides all fields")
             }
-            const { data } = await Api.post('./inventory/create-inventory', {
+            const { data } = await Api.post('/inventory/create-inventory', {
                 donorEmail,
                 email: user?.email,
                 organisation: user?._id,
@@ -88,8 +88,12 @@ const Modal = () => {
                                 </div>
 
                             </div>
-                            <select className="form-select" aria-label="Default select example" onChange={(e) => setBloodGroup(e.target.value)}>
+                            <select
+                                className="form-select"
+                                aria-label="Default select example"
+                                onChange={(e) => setBloodGroup(e.target.value)}>
                                 <option selected>Open this select menu</option>
+
                                 <option value={'O+'}>O+</option>
                                 <option value={'O-'}>O-</option>
                                 <option value={'AB+'}>AB+</option>
