@@ -55,7 +55,7 @@ const getInventoryController = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "get all records successfully",
-            data: inventory
+             inventory
         })
 
     } catch (error) {

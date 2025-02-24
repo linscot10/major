@@ -14,8 +14,9 @@ const Home = () => {
         try {
 
             const { data } = await Api.get('/inventory/get-inventory')
-            if (data?.success) {
+            if (data?.success && Array.isArray(data.inventory)) {
                 setData(data?.inventory)
+
                 console.log(data)
             }
         } catch (error) {
@@ -54,17 +55,20 @@ const Home = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {data?.map(record => (
+                                {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                                     <tr key={record._id}>
-
                                         <td>{record.bloodGroup}</td>
                                         <td>{record.inventoryType}</td>
                                         <td>{record.quantity}</td>
                                         <td>{record.donorEmail}</td>
-                                        <td>{moment(record.createdAt).format('DD/MM/YYYY hh:mm A')}</td>
+                                        <td>{moment(record.createdAt).format("DD/MM/YYYY hh:mm A")}</td>
 
                                     </tr>
-                                ))}
+                                ))) : (
+                                    <tr>
+                                        <td colSpan="5">No records available</td>
+                                    </tr>
+                                )}
 
 
                             </tbody>
@@ -80,3 +84,7 @@ const Home = () => {
 }
 
 export default Home
+
+
+
+

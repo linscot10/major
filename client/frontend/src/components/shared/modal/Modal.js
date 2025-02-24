@@ -92,7 +92,7 @@ const Modal = () => {
                                 className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => setBloodGroup(e.target.value)}>
-                                <option selected>Open this select menu</option>
+                                <option value={''}>Open this select menu</option>
 
                                 <option value={'O+'}>O+</option>
                                 <option value={'O-'}>O-</option>
