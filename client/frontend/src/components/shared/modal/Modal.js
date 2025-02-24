@@ -79,7 +79,7 @@ const Modal = () => {
                                     <input
                                         type='radio'
                                         name='inRadio'
-                                        defaultChecked
+
                                         value={'out'}
                                         onChange={(e) => setInventoryType(e.target.value)}
                                         className='form-check-input' />

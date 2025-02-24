@@ -23,7 +23,7 @@ const createInventoryController = async (req, res) => {
 
         if (req.body.inventoryType == 'out') {
             const requestedBloodGroup = req.body.bloodGroup;
-            const requestedQuanityOfBlood = req.body.quantity;
+            const requestedQuantityOfBlood = req.body.quantity;
             const organisation = new mongoose.Types.ObjectId(req.body.userId)
 
             const totalInOfRequestedBlood = await InventoryModel.aggregate([
@@ -44,10 +44,10 @@ const createInventoryController = async (req, res) => {
 
 
 
-            const totalIn = totalInRequestedBlood[0]?.total || 0
+            const totalIn = totalInOfRequestedBlood[0]?.total || 0
             // calculate blood out
 
-            const totalOutOfReaquestedBloodGruop = await inventoryModel.aggregate([
+            const totalOutOfRequestedBloodGroup = await InventoryModel.aggregate([
                 {
                     $match: {
                         organisation,
@@ -62,12 +62,13 @@ const createInventoryController = async (req, res) => {
                 }
             ])
 
-            const totalOut = totalOutRequestedBlood[0]?.total || 0
+            const totalOut = totalOutOfRequestedBloodGroup[0]?.total || 0
 
             const availableQuantityOfBloodGroup = totalIn - totalOut
 
-            if (availableQuantityOfBloodGroup < requestedQuanityOfBlood) {
-                return res.status(500).send({
+
+            if (availableQuantityOfBloodGroup < requestedQuantityOfBlood) {
+                return res.status(500).json({
                     success: false,
                     message: `Only ${availableQuantityOfBloodGroup}ML of ${requestedBloodGroup.toUpperCase()} is available`
                 })
