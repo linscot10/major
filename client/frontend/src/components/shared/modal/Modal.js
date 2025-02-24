@@ -29,6 +29,7 @@ const Modal = () => {
                 window.location.reload()
             }
         } catch (error) {
+            alert(error.response.data.message)
             window.location.reload()
             console.log(error)
         }

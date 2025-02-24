@@ -17,7 +17,7 @@ const Home = () => {
             if (data?.success && Array.isArray(data.inventory)) {
                 setData(data?.inventory)
 
-                console.log(data)
+                // console.log(data)
             }
         } catch (error) {
             console.log(error)
