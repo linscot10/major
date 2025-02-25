@@ -1,12 +1,13 @@
 const InventoryModel = require("../model/Inventory.model");
-const Inventory = require("../model/Inventory.model")
+const Inventory = require("../model/Inventory.model");
+const UserModel = require("../model/User.model");
 const User = require("../model/User.model")
 const mongoose = require('mongoose');
 
 
 const createInventoryController = async (req, res) => {
     try {
-        const { email, inventoryType } = req.body
+        const { email } = req.body
         const user = await User.findOne({ email })
 
         if (!user) {
@@ -75,6 +76,9 @@ const createInventoryController = async (req, res) => {
             }
             req.body.hospital = user?._id;
         }
+        else {
+            req.body.donor = user?._id
+        }
 
 
         const inventory = new Inventory(req.body)
@@ -90,7 +94,7 @@ const createInventoryController = async (req, res) => {
 
         return res.status(500).json({
             success: false,
-            message: "Something happened ",
+            message: "Something happened ,user not found",
             error
         })
     }
@@ -127,7 +131,114 @@ const getInventoryController = async (req, res) => {
 }
 
 
+const getDonors = async (req, res) => {
+    try {
+        const organisation = req.body.userId
+        const donorId = await InventoryModel.distinct("donor", {
+            organisation
+        })
+
+        // console.log(donorId);
+        const donors = await UserModel.find({ _id: { $in: donorId } })
+
+        return res.status(200).json({
+            success: true,
+            message: "Donor Records Fetched Successfully",
+            donors
+        })
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error getting donor records",
+            error
+        })
+    }
+}
+
+const getHospitalController = async (req, res) => {
+    try {
+        const organisation = req.body.userId
+        const hospitalId = await InventoryModel.distinct("hospital", {
+            organisation
+        })
+
+        // console.log(donorId);
+        const hospitals = await UserModel.find({ _id: { $in: hospitalId } })
+        // console.log(hospitals);
+        return res.status(200).json({
+            success: true,
+            message: "Hospital Records Fetched Successfully",
+            hospitals
+        })
+
+
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error getting hospital records",
+            error
+        })
+    }
+}
+
+
+const getOrganisationController = async (req, res) => {
+    try {
+        const donor = req.body.userId
+        const orgId = await InventoryModel.distinct("organisation", {
+            donor
+        })
+
+        const organisations = await UserModel.find({ _id: { $in: orgId } })
+
+        return res.status(200).json({
+            success: true,
+            message: "Organisation Records Fetched Successfully",
+            organisations
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error getting Organisation records",
+            error
+        })
+    }
+}
+
+
+const getOrganisationForHospitalController = async (req, res) => {
+    try {
+        const hospital = req.body.userId
+        const orgId = await InventoryModel.distinct("organisation", {
+            hospital
+        })
+
+        const organisations = await UserModel.find({ _id: { $in: orgId } })
+
+        return res.status(200).json({
+            success: true,
+            message: " Hospital Organisation Records Fetched Successfully",
+            organisations
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error getting hospital Organisation records",
+            error
+        })
+    }
+}
 module.exports = {
     createInventoryController,
-    getInventoryController
+    getInventoryController,
+    getDonors,
+    getHospitalController,
+    getOrganisationController,
+    getOrganisationForHospitalController
 }

@@ -8,7 +8,7 @@ userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        require: function () {
+        required: function () {
             if (this.role === 'donor' || this.role === 'admin') {
                 return true
             }
@@ -17,7 +17,7 @@ userSchema = new mongoose.Schema({
     },
     organisationName: {
         type: String,
-        require: function () {
+        required: function () {
             if (this.role === 'organisation') {
                 return true
             }
@@ -26,7 +26,7 @@ userSchema = new mongoose.Schema({
     },
     hospitalName: {
         type: String,
-        require: function () {
+        required: function () {
             if (this.role === 'hospital') {
                 return true
             }
@@ -35,23 +35,23 @@ userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        require: [true, 'Email is required'],
+        required: [true, 'Email is required'],
         unique: true
     },
     password: {
         type: String,
-        require: [true, 'Password is required'],
+        required: [true, 'Password is required'],
     },
     website: {
         type: String
     },
     address: {
         type: String,
-        require: [true, 'Address is required'],
+        required: [true, 'Address is required'],
     },
     phone: {
         type: String,
-        require: [true, 'phone is required'],
+        required: [true, 'phone is required'],
     },
 
 }, { timestamps: true })

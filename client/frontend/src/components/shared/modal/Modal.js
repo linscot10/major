@@ -7,7 +7,7 @@ const Modal = () => {
     const [inventoryType, setInventoryType] = useState('in')
     const [bloodGroup, setBloodGroup] = useState("")
     const [quantity, setQuantity] = useState(0)
-    const [donorEmail, setDonorEmail] = useState("")
+    const [email, setEmail] = useState("")
     const { user } = useSelector(state => state.auth)
 
     const handleModalSubmit = async () => {
@@ -16,8 +16,8 @@ const Modal = () => {
                 return alert("Please Provides all fields")
             }
             const { data } = await Api.post('/inventory/create-inventory', {
-                donorEmail,
-                email: user?.email,
+
+                email,
                 organisation: user?._id,
                 inventoryType,
                 bloodGroup,
@@ -108,8 +108,8 @@ const Modal = () => {
                                 labelText={'Donor Email'}
                                 labelFor={'donorEmail'}
                                 inputType={'email'}
-                                value={donorEmail}
-                                onChange={(e) => setDonorEmail(e.target.value)}
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <InputType
                                 labelText={'Quantity'}
