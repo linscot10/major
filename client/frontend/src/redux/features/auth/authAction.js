@@ -27,6 +27,7 @@ export const userLogin = createAsyncThunk(
 export const userRegister = createAsyncThunk(
     'auth/register',
     async ({
+        name,
         email,
         password,
         role,
@@ -38,6 +39,7 @@ export const userRegister = createAsyncThunk(
     }, { rejectWithValue }) => {
         try {
             const { data } = await Api.post('auth/register', {
+                name,
                 email,
                 password,
                 role,

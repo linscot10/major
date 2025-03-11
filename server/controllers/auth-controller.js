@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const registerController = async (req, res) => {
     try {
+        console.log(req.body);
         const existingUser = await User.findOne({ email: req.body.email })
         if (existingUser) {
             return res.status(400).json({
@@ -22,11 +23,16 @@ const registerController = async (req, res) => {
 
         await user.save();
 
+        // console.log(user);
+
+
         if (user) {
             res.status(201).json({
                 success: true,
-                message: "User created successfully", user
+                message: "User created successfully",
+                user
             })
+
         }
         else {
             res.status(400).json({
