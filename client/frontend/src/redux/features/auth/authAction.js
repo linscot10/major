@@ -2,19 +2,26 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import Api from "../../../services/Api"
 import { toast } from 'react-toastify';
 
+
 export const userLogin = createAsyncThunk(
     'auth/login',
     async ({ role, email, password }, { rejectWithValue }) => {
         try {
+
             const { data } = await Api.post('auth/login', { role, email, password })
             if (data.success) {
-                localStorage.setItem('token', data.token)
+                // alert(data.message);
+                localStorage.removeItem('token');
+                alert(data.message);
+                localStorage.setItem("token", data.token);
                 toast.success(data.message)
-                window.location.replace('/')
+                window.location.replace("/");
             }
+
             return data;
 
         } catch (error) {
+
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message)
             }
@@ -72,7 +79,7 @@ export const getCurrentUser = createAsyncThunk(
     async ({ rejectWithValue }) => {
         try {
             const res = await Api.get('auth/current-user')
-            if (res?.data) {
+            if (res.data) {
                 return res?.data
             }
         } catch (error) {

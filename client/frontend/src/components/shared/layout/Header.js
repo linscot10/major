@@ -3,6 +3,11 @@ import { BiDonateBlood, BiUserCircle } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+
+
+
+
+
 const Header = () => {
 
     const { user } = useSelector((state) => state.auth);
@@ -10,6 +15,11 @@ const Header = () => {
     const navigate = useNavigate()
     const handleLogout = () => {
         localStorage.clear()
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
+
+
         alert("Logout Successfully")
         navigate('/login')
     }

@@ -8,7 +8,7 @@ const ProtectedRoute = ({ children }) => {
 
     const getUser = async () => {
         try {
-            const { data } = await Api.get('auth/current-user')
+            const { data } = await Api.get('/auth/current-user')
             if (data?.success) {
                 dispatch(getCurrentUser(data))
             }
