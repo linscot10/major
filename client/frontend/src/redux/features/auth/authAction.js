@@ -2,17 +2,19 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import Api from "../../../services/Api"
 import { toast } from 'react-toastify';
 
-
+// login is gives correct info data
 export const userLogin = createAsyncThunk(
     'auth/login',
     async ({ role, email, password }, { rejectWithValue }) => {
         try {
 
             const { data } = await Api.post('auth/login', { role, email, password })
+            console.log(data);
+
             if (data.success) {
                 // alert(data.message);
                 localStorage.removeItem('token');
-                alert(data.message);
+                // alert(data.message);
                 localStorage.setItem("token", data.token);
                 toast.success(data.message)
                 window.location.replace("/");
@@ -74,11 +76,13 @@ export const userRegister = createAsyncThunk(
     }
 )
 
+// getting the wrong data
 export const getCurrentUser = createAsyncThunk(
     'auth/getCurrentUser',
     async ({ rejectWithValue }) => {
         try {
-            const res = await Api.get('auth/current-user')
+            const res = await Api.get('/auth/current-user')
+            console.log(res)
             if (res.data) {
                 return res?.data
             }

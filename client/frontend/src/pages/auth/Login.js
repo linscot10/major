@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Form from '../../components/shared/form/Form'
 import { useSelector } from 'react-redux'
 import Spinner from '../../components/shared/Spinner'
@@ -7,12 +7,16 @@ import { toast } from 'react-toastify'
 
 const Login = () => {
     const { loading, error } = useSelector(state => state.auth)
+
+    useEffect(() => {
+        if (error) {
+            toast.error(error)
+        }
+    }, [error])
     return (
 
         <>
-            {
-                error && <span>{toast.error(error)}</span>
-            }
+
             {
 
                 loading ? (< Spinner />) : (<div className="row g-0">

@@ -9,14 +9,15 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Header = () => {
-
+// getting the wrong data
     const { user } = useSelector((state) => state.auth);
-
+    console.log(user)
     const navigate = useNavigate()
     const handleLogout = () => {
+
         localStorage.clear()
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        // localStorage.removeItem('token');
+        // localStorage.removeItem('user');
 
 
 

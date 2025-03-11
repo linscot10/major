@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const registerController = async (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const existingUser = await User.findOne({ email: req.body.email })
         if (existingUser) {
             return res.status(400).json({
@@ -52,6 +52,8 @@ const registerController = async (req, res) => {
 
 const loginController = async (req, res) => {
     try {
+        console.log(req.body);
+
         const user = await User.findOne({ email: req.body.email })
         if (!user) {
             res.status(404).json({
@@ -93,10 +95,20 @@ const loginController = async (req, res) => {
 }
 
 
+// not pulling the correct user
 const currentUserController = async (req, res) => {
     try {
+        // console.log(req.body.email);
+        const user = await User.findOne({ _id: req.user.userId })
+        console.log(user);
 
-        const user = await User.findOne({ userId: req.body._id })
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User Not Found"
+            });
+        }
+
         return res.status(200).json({
             success: true,
             message: "User Fetched Successfully",
