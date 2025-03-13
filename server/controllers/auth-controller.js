@@ -52,7 +52,7 @@ const registerController = async (req, res) => {
 
 const loginController = async (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
 
         const user = await User.findOne({ email: req.body.email })
         if (!user) {
@@ -100,7 +100,7 @@ const currentUserController = async (req, res) => {
     try {
         // console.log(req.body.email);
         const user = await User.findOne({ _id: req.user.userId })
-        console.log(user);
+        // console.log(user);
 
         if (!user) {
             return res.status(404).json({

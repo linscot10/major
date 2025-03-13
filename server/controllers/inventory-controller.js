@@ -101,15 +101,15 @@ const createInventoryController = async (req, res) => {
 }
 
 const getInventoryController = async (req, res) => {
-    console.log("req.body.userId:", req.body.userId);
+    console.log("req.body.userId:", req.user.userId);
     try {
-        if (!mongoose.Types.ObjectId.isValid(req.body.userId)) {
+        if (!mongoose.Types.ObjectId.isValid(req.user.userId)) {
             return res.status(400).json({
                 success: false,
                 message: "Invalid userId format"
             });
         }
-        const inventory = await Inventory.find({ organisation: req.body.userId })
+        const inventory = await Inventory.find({ organisation: req.user.userId })
             .populate('donor')
             .populate('hospital')
             .sort({ createdAt: -1 })
@@ -133,7 +133,7 @@ const getInventoryController = async (req, res) => {
 
 const getDonors = async (req, res) => {
     try {
-        const organisation = req.body.userId
+        const organisation = req.user.userId
         const donorId = await InventoryModel.distinct("donor", {
             organisation
         })
@@ -159,7 +159,7 @@ const getDonors = async (req, res) => {
 
 const getHospitalController = async (req, res) => {
     try {
-        const organisation = req.body.userId
+        const organisation = req.user.userId
         const hospitalId = await InventoryModel.distinct("hospital", {
             organisation
         })
@@ -188,7 +188,7 @@ const getHospitalController = async (req, res) => {
 
 const getOrganisationController = async (req, res) => {
     try {
-        const donor = req.body.userId
+        const donor = req.user.userId
         const orgId = await InventoryModel.distinct("organisation", {
             donor
         })
@@ -213,7 +213,7 @@ const getOrganisationController = async (req, res) => {
 
 const getOrganisationForHospitalController = async (req, res) => {
     try {
-        const hospital = req.body.userId
+        const hospital = req.user.userId
         const orgId = await InventoryModel.distinct("organisation", {
             hospital
         })

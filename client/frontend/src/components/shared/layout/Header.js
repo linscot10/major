@@ -9,9 +9,9 @@ import { useNavigate } from 'react-router-dom'
 
 
 const Header = () => {
-// getting the wrong data
+
     const { user } = useSelector((state) => state.auth);
-    console.log(user)
+    // console.log(user)
     const navigate = useNavigate()
     const handleLogout = () => {
 

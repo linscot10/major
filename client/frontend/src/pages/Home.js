@@ -14,10 +14,12 @@ const Home = () => {
         try {
 
             const { data } = await Api.get('/inventory/get-inventory')
+
+            
             if (data?.success && Array.isArray(data.inventory)) {
                 setData(data?.inventory)
 
-                // console.log(data)
+                
             }
         } catch (error) {
             console.log(error)
