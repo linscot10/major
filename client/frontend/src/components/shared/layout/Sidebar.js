@@ -26,6 +26,11 @@ const Sidebar = () => {
                                 <Link to="/hospital">Hospital</Link>
                             </div>
 
+                            <div className={`menu-item ${location.pathname === '/organisation' && 'active'}`}>
+                                <i className="fa-sharp  fa-solid fa-building-ngo"></i>
+                                <Link to="/organisation">Organisation</Link>
+                            </div>
+
                         </>
                     )}
 
