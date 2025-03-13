@@ -25,7 +25,7 @@ const createInventoryController = async (req, res) => {
         if (req.body.inventoryType == 'out') {
             const requestedBloodGroup = req.body.bloodGroup;
             const requestedQuantityOfBlood = req.body.quantity;
-            const organisation = new mongoose.Types.ObjectId(req.body.userId)
+            const organisation = new mongoose.Types.ObjectId(req.user.userId)
 
             const totalInOfRequestedBlood = await InventoryModel.aggregate([
                 {
@@ -101,7 +101,7 @@ const createInventoryController = async (req, res) => {
 }
 
 const getInventoryController = async (req, res) => {
-    console.log("req.body.userId:", req.user.userId);
+    // console.log("req.body.userId:", req.user.userId);
     try {
         if (!mongoose.Types.ObjectId.isValid(req.user.userId)) {
             return res.status(400).json({
