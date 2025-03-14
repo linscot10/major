@@ -9,6 +9,7 @@ const connectDB = require("./database/db")
 const testRouter = require('./routes/test-route')
 const authRoutes = require("./routes/auth-route")
 const inventoryRoute = require("./routes/inventory-routes")
+const analyticsRoute = require("./routes/analyticsRoute")
 const app = express()
 
 app.use(express.json())
@@ -21,6 +22,7 @@ connectDB()
 app.use("/api/", testRouter)
 app.use("/api/auth", authRoutes)
 app.use("/api/inventory", inventoryRoute)
+app.use("/api/analytics", analyticsRoute)
 
 
 app.listen(PORT, () => {

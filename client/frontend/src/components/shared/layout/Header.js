@@ -1,7 +1,7 @@
 import React from 'react'
 import { BiDonateBlood, BiUserCircle } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, Link } from 'react-router-dom'
 
 
 
@@ -42,7 +42,19 @@ const Header = () => {
                             </p>
                         </li>
                         {
-                            location.pathname
+                            location.pathname === '/' ? (
+                                <li className="nav-item mx-3">
+                                    <Link to="/analytics" className="nav-link">
+                                        Analytics
+                                    </Link>
+                                </li>
+                            ) : (
+                                <li className="nav-item mx-3">
+                                    <Link to="/" className="nav-link">
+                                        Home
+                                    </Link>
+                                </li>
+                            )
                         }
                         <li className="nav-item mx-3">
                             <button className="btn btn-danger" onClick={handleLogout}>LogOut</button>

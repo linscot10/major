@@ -10,6 +10,7 @@ import Hospital from './pages/Dashboard/Hospital';
 import Organisation from './pages/Dashboard/Organisation';
 import Consumer from './pages/Dashboard/Consumer';
 import Donation from './pages/Donation';
+import Analytics from './pages/Dashboard/Analytics';
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
         <Route path='/donation' element={
           <ProtectedRoute>
             <Donation />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/analytics' element={
+          <ProtectedRoute>
+            <Analytics />
           </ProtectedRoute>
         }></Route>
         <Route path='/organisation' element={
