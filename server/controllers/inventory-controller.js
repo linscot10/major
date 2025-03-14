@@ -234,11 +234,51 @@ const getOrganisationForHospitalController = async (req, res) => {
         })
     }
 }
+
+// hospital records
+
+const getInventoryHospitalController = async (req, res) => {
+    // console.log("req.body.userId:", req.user.userId);
+    try {
+        if (!mongoose.Types.ObjectId.isValid(req.user.userId)) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid userId format"
+            });
+        }
+
+
+
+        // console.log("req.user.filters:", req.body.filters);
+
+        const inventory = await Inventory.find(req.body.filters)
+            .populate('donor')
+            .populate('hospital')
+            .populate('organisation')
+            .sort({ createdAt: -1 })
+        return res.status(200).json({
+            success: true,
+            message: "get  hospital consumer  records successfully",
+            inventory
+        })
+
+    } catch (error) {
+        console.error('Error fetching the inventory', error)
+
+        return res.status(500).json({
+            success: false,
+            message: "Error fetching the  consumer inventory",
+            error
+        })
+    }
+}
+
 module.exports = {
     createInventoryController,
     getInventoryController,
     getDonors,
     getHospitalController,
     getOrganisationController,
-    getOrganisationForHospitalController
+    getOrganisationForHospitalController,
+    getInventoryHospitalController
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BiDonateBlood, BiUserCircle } from 'react-icons/bi'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 
 
@@ -13,6 +13,7 @@ const Header = () => {
     const { user } = useSelector((state) => state.auth);
     // console.log(user)
     const navigate = useNavigate()
+    const location = useLocation()
     const handleLogout = () => {
 
         localStorage.clear()
@@ -40,6 +41,9 @@ const Header = () => {
                                 <span className="badge bg-secondary">{user?.role}</span>
                             </p>
                         </li>
+                        {
+                            location.pathname
+                        }
                         <li className="nav-item mx-3">
                             <button className="btn btn-danger" onClick={handleLogout}>LogOut</button>
                         </li>

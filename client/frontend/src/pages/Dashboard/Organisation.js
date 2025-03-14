@@ -50,7 +50,7 @@ const Organisation = () => {
                 <tbody>
                     {Array.isArray(data) && data.length > 0 ? (data?.map((record) => (
                         <tr key={record._id}>
-                            <td>{record.OrganisationName}</td>
+                            <td>{record.organisationName}</td>
                             <td>{record.email}</td>
                             <td>{record.phone}</td>
                             <td>{record.address}</td>
