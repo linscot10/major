@@ -1,12 +1,14 @@
 const InventoryModel = require("../model/Inventory.model")
+const mongoose = require('mongoose')
 
 const bloodGroupDetailsController = async (req, res) => {
     try {
-        const bloodGroup = ['O+', 'O-', 'AB+', 'AB-', 'A+', 'A-', 'B+', 'B-']
+        const bloodGroups = ['O+', 'O-', 'AB+', 'AB-', 'A+', 'A-', 'B+', 'B-']
+        const organisation = new mongoose.Types.ObjectId(req.user.userId)
         const bloodGroupData = []
-        const organisation = req.user.userId
+        // const organisation = req.user.userId
 
-        await Promise.all(async (bloodGroup) => {
+        await Promise.all(bloodGroups.map(async (bloodGroup) => {
             const totalIn = InventoryModel.aggregate([
                 {
                     $match: {
@@ -52,7 +54,7 @@ const bloodGroupDetailsController = async (req, res) => {
 
             })
 
-        })
+        }))
 
         return res.status(200).json({
             success: true,
