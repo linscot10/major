@@ -10,7 +10,7 @@ router.get('/get-hospitals', authMiddleware, getHospitalController)
 router.get('/get-organisations', authMiddleware, getOrganisationController)
 router.get('/get-organisations-for-hospital', authMiddleware, getOrganisationForHospitalController)
 router.post('/get-inventory-hospital', authMiddleware, getInventoryHospitalController)
-router.post('/get-recent-inventory', authMiddleware, getRecentInventoryController)
+router.get('/get-recent-inventory', authMiddleware, getRecentInventoryController)
 
 
 module.exports = router

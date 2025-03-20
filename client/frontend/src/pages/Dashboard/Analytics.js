@@ -32,7 +32,7 @@ const Analytics = () => {
 
             if (data?.success && Array.isArray(data.inventory)) {
                 setInventoryData(data?.inventory)
-
+                console.log(data)
 
             }
         } catch (error) {
@@ -61,14 +61,15 @@ const Analytics = () => {
                                 </p>
 
                             </div>
-                            <div class="card-footer text-light bg-dark text-center">
+                            <div className="card-footer text-light bg-dark text-center">
                                 Total Available: <b>{record.availableBlood}</b> (Ml)
                             </div>
+
                         </div>
                     ))
                 }
             </div>
-            <div class="container">
+            <div className="container">
 
                 <table className="table ">
                     <thead>

@@ -131,16 +131,21 @@ const getInventoryController = async (req, res) => {
 }
 
 
-const getRecentInventoryController = async () => {
+const getRecentInventoryController = async (req, res) => {
     try {
+
         const inventory = await InventoryModel.find({
             organisation: req.user.userId
         }).limit(3).sort({ createdAt: -1 })
+        console.log(inventory)
         return res.status(200).json({
             success: true,
             message: "recent inventory data",
             inventory
         })
+
+
+
     } catch (error) {
         console.log(error)
         return res.status(500).json({
