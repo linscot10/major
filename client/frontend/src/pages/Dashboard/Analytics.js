@@ -69,8 +69,8 @@ const Analytics = () => {
                     ))
                 }
             </div>
-            <div className="container">
-
+            <div className="container mt-3">
+                <h1 className="my-3" >Recent Blood Transactions</h1>
                 <table className="table ">
                     <thead>
                         <tr>

@@ -137,7 +137,7 @@ const getRecentInventoryController = async (req, res) => {
         const inventory = await InventoryModel.find({
             organisation: req.user.userId
         }).limit(3).sort({ createdAt: -1 })
-        console.log(inventory)
+        // console.log(inventory)
         return res.status(200).json({
             success: true,
             message: "recent inventory data",
