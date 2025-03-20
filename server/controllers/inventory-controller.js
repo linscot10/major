@@ -131,6 +131,26 @@ const getInventoryController = async (req, res) => {
 }
 
 
+const getRecentInventoryController = async () => {
+    try {
+        const inventory = await InventoryModel.find({
+            organisation: req.user.userId
+        }).limit(3).sort({ createdAt: -1 })
+        return res.status(200).json({
+            success: true,
+            message: "recent inventory data",
+            inventory
+        })
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success: false,
+            message: "Error getting recent records",
+            error
+        })
+    }
+}
+
 const getDonors = async (req, res) => {
     try {
         const organisation = req.user.userId
@@ -280,5 +300,6 @@ module.exports = {
     getHospitalController,
     getOrganisationController,
     getOrganisationForHospitalController,
-    getInventoryHospitalController
+    getInventoryHospitalController,
+    getRecentInventoryController
 }

@@ -30,6 +30,9 @@ const Home = () => {
         getBloodRecords();
 
     }, [])
+
+
+    
     return (
 
         <Layout>
