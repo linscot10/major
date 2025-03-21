@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors")
 const colors = require("colors")
 const morgan = require("morgan")
+const path = require('path')
 
 
 require("dotenv").config()
@@ -19,7 +20,7 @@ app.use(morgan('dev'))
 
 app.use(express.static(path.join(__dirname, "../client/frontend/build")));
 
-app.get("*",function(req,res){
+app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../client/frontend/build/index.html"))
 })
 
