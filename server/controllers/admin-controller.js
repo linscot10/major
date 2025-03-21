@@ -64,4 +64,22 @@ const getOrganisationListController = async (req, res) => {
     }
 }
 
-module.exports = { getDonorsListController, getHospitalListController, getOrganisationListController }
+const deleteDonorController = async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        return res.status(200).json({
+            success: true,
+            message: 'Donor Record Deleted successfully',
+
+        })
+    } catch (error) {
+        console.error("something Happened ", error)
+        return res.status(500).json({
+            success: false,
+            message: "Error in deleting donor ",
+            error
+        })
+    }
+}
+
+module.exports = { getDonorsListController, getHospitalListController, getOrganisationListController, deleteDonorController }
