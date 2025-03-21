@@ -45,7 +45,7 @@ const Sidebar = () => {
                             </div>
                             <div className={`menu-item ${location.pathname === '/org-list' && 'active'}`}>
                                 <i className="fa-solid fa-hospital"></i>
-                                <Link to="/org-list">Oragnisation List</Link>
+                                <Link to="/org-list">Organisation List</Link>
                             </div>
 
                             {/* <div className={`menu-item ${location.pathname === '/organisation' && 'active'}`}>
@@ -95,4 +95,3 @@ const Sidebar = () => {
 
 export default Sidebar
 
-// 820hrs

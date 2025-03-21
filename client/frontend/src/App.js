@@ -11,15 +11,39 @@ import Organisation from './pages/Dashboard/Organisation';
 import Consumer from './pages/Dashboard/Consumer';
 import Donation from './pages/Donation';
 import Analytics from './pages/Dashboard/Analytics';
+import DonorList from './pages/Admin/DonorList';
+import HospitalList from './pages/Admin/HospitalList';
+import OrgList from './pages/Admin/OrgList';
+import AdminHome from './pages/Admin/AdminHome';
 
 function App() {
   return (
     < >
       <ToastContainer />
       <Routes>
+        <Route path='/admin' element={
+          <ProtectedRoute>
+            <AdminHome />
+          </ProtectedRoute>
+        }></Route>
         <Route path='/donor' element={
           <ProtectedRoute>
             <Donor />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/donor-list' element={
+          <ProtectedRoute>
+            <DonorList />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/hospital-list' element={
+          <ProtectedRoute>
+            <HospitalList />
+          </ProtectedRoute>
+        }></Route>
+        <Route path='/org-list' element={
+          <ProtectedRoute>
+            <OrgList />
           </ProtectedRoute>
         }></Route>
         <Route path='/hospital' element={
