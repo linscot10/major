@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors")
 const colors = require("colors")
 const morgan = require("morgan")
-const path = require('path')
+// const path = require('path')
 
 
 require("dotenv").config()
@@ -18,11 +18,11 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
 
-app.use(express.static(path.join(__dirname, "../client/frontend/build")));
+// app.use(express.static(path.join(__dirname, "../client/frontend/build")));
 
-app.get("*", function (req, res) {
-    res.sendFile(path.join(__dirname, "../client/frontend/build/index.html"))
-})
+// app.get("*", function (req, res) {
+//     res.sendFile(path.join(__dirname, "../client/frontend/build/index.html"))
+// })
 
 PORT = process.env.PORT || 4000
 connectDB()
