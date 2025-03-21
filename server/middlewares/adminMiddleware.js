@@ -1,10 +1,10 @@
-const UserModel = require("../model/User.model")
+const User = require("../model/User.model")
 const mongoose = require("mongoose")
 
 
 module.exports = async (req, res, next) => {
     try {
-        const user = await UserModel.findById(req.user.userId)
+        const user = await User.findById(req.user.userId)
         if (user?.role !== 'admin') {
             return res.status(401).json({
                 success: false,
