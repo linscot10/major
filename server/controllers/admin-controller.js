@@ -81,5 +81,39 @@ const deleteDonorController = async (req, res) => {
         })
     }
 }
+const deleteHospitalController = async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        return res.status(200).json({
+            success: true,
+            message: 'Hospital Record Deleted successfully',
 
-module.exports = { getDonorsListController, getHospitalListController, getOrganisationListController, deleteDonorController }
+        })
+    } catch (error) {
+        console.error("something Happened ", error)
+        return res.status(500).json({
+            success: false,
+            message: "Error in deleting hospital record ",
+            error
+        })
+    }
+}
+const deleteOrganisationController = async (req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        return res.status(200).json({
+            success: true,
+            message: 'Hospital Record Deleted successfully',
+
+        })
+    } catch (error) {
+        console.error("something Happened ", error)
+        return res.status(500).json({
+            success: false,
+            message: "Error in deleting organisation record ",
+            error
+        })
+    }
+}
+
+module.exports = { getDonorsListController, getHospitalListController, getOrganisationListController, deleteDonorController, deleteHospitalController, deleteOrganisationController }

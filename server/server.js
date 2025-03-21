@@ -17,6 +17,12 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan('dev'))
 
+app.use(express.static(path.join(__dirname, "../client/frontend/build")));
+
+app.get("*",function(req,res){
+    res.sendFile(path.join(__dirname, "../client/frontend/build/index.html"))
+})
+
 PORT = process.env.PORT || 4000
 connectDB()
 
