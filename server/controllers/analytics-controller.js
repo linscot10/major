@@ -9,7 +9,7 @@ const bloodGroupDetailsController = async (req, res) => {
         // const organisation = req.user.userId
 
         await Promise.all(bloodGroups.map(async (bloodGroup) => {
-            const totalIn = InventoryModel.aggregate([
+            const totalIn = await InventoryModel.aggregate([
                 {
                     $match: {
                         bloodGroup: bloodGroup,
@@ -27,11 +27,11 @@ const bloodGroupDetailsController = async (req, res) => {
                 }
             ])
 
-            const totalOut = InventoryModel.aggregate([
+            const totalOut = await InventoryModel.aggregate([
                 {
                     $match: {
                         bloodGroup: bloodGroup,
-                        inventoryType: 'Out',
+                        inventoryType: 'out',
                         organisation
                     }
                 }
