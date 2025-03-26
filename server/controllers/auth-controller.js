@@ -95,7 +95,7 @@ const loginController = async (req, res) => {
 }
 
 
-// not pulling the correct user
+// not pulling the correct us
 const currentUserController = async (req, res) => {
     try {
         // console.log(req.body.email);
